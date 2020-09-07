@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour
 
     public int damage = 1;
 
+    public GameObject explosion;
+
     void Start()
     {
         speed = UnityEngine.Random.Range(minSpeed, maxSpeed);
@@ -32,6 +34,14 @@ public class Enemy : MonoBehaviour
         if (hitObject.tag == "Player")
         {
             playerScript.TakeDamage(damage);
+            Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+
+        if (hitObject.tag == "Ground")
+        {
+            Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 
