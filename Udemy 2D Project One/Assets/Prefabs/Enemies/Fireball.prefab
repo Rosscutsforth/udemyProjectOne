@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -4237428464844193917}
   m_Layer: 0
   m_Name: Fireball
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,6 +99,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSpeed: 15
   maxSpeed: 25
+  target: {fileID: 0}
+  score: {fileID: 0}
+  scoreCapture: 0
   damage: 2
   explosion: {fileID: 3373554055974586639, guid: 08e1a2713eaabce45af2d2852fc82d19, type: 3}
 --- !u!70 &1580518970127261943

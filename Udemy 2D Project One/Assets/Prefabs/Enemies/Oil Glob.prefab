@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2006533765298340867}
   m_Layer: 0
   m_Name: Oil Glob
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,6 +98,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSpeed: 5
   maxSpeed: 8
+  target: {fileID: 0}
+  score: {fileID: 0}
+  scoreCapture: 0
   damage: 2
   explosion: {fileID: 477176077517817324, guid: 965719ab28a7b1b489aec4b4b004e56f, type: 3}
 --- !u!70 &2006533765298340867
