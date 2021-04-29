@@ -15,7 +15,16 @@ public class Player : MonoBehaviour
 
     Rigidbody2D rb;
     Animator anim;
+
+    //Audio Variable Declarations
     AudioSource source;
+    public AudioClip heal;
+    public AudioClip hurt;
+
+    private GameObject headSpawner;
+    private Transform headSpawnerTransform;
+
+    public GameObject flowerPower;
 
     public int health = 3;
 
@@ -33,6 +42,8 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         //getting the animator component from the player character
         anim = GetComponent<Animator>();
+        //getting the particle head spawner's transform
+        headSpawner = GameObject.Find("ParticleHeadSpawner");
 
         healthDisplay.text = health.ToString();
     }
@@ -62,12 +73,15 @@ public class Player : MonoBehaviour
             speed += extraSpeed;
             isDashing = true;
             dashTime = startDashTime;
+            anim.SetBool("isDashing", true);
+            Object.Instantiate(flowerPower, headSpawner.transform.position, Quaternion.identity);
         }
 
         if (dashTime <= 0 && isDashing == true)
         {
             isDashing = false;
             speed -= extraSpeed;
+            anim.SetBool("isDashing", false);
         }
         else
         {
@@ -87,18 +101,37 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damageAmount)
     {
-        source.Play();
-        health -= damageAmount;
-        if (health < 0)
+        if(damageAmount == 1)
         {
-            healthDisplay.text = 0.ToString();
-        }
-        healthDisplay.text = health.ToString();
+            source.PlayOneShot(hurt, 1);
+            health -= damageAmount;
+            if (health < 0)
+            {
+                healthDisplay.text = 0.ToString();
+            }
+            healthDisplay.text = health.ToString();
 
-        if (health <= 0)
+            if (health <= 0)
+            {
+                losePanel.SetActive(true);
+                Destroy(gameObject);
+            }
+        }
+        else if(damageAmount == -1)
         {
-            losePanel.SetActive(true);
-            Destroy(gameObject);
+            source.PlayOneShot(heal, .7f);
+            health -= damageAmount;
+            if (health < 0)
+            {
+                healthDisplay.text = 0.ToString();
+            }
+            healthDisplay.text = health.ToString();
+
+            if (health <= 0)
+            {
+                losePanel.SetActive(true);
+                Destroy(gameObject);
+            }
         }
     }
 }

@@ -7,11 +7,13 @@ public class ScoreCounter : MonoBehaviour
 {
 
     public Text score;
+    public GameObject player;
     public int scoreCapture = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         score.text = scoreCapture.ToString();
     }
 
