@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -7554349266773058298}
   m_Layer: 0
   m_Name: Water Droplet
-  m_TagString: Enemy
+  m_TagString: HealthRegen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

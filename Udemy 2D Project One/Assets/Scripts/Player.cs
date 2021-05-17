@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public GameObject losePanel;
 
     public Text healthDisplay;
+    public Text maxHealthDisplay;
 
     public float speed = 10f;
     private float input;
@@ -21,13 +22,26 @@ public class Player : MonoBehaviour
     public AudioClip heal;
     public AudioClip hurt;
 
+    //Spawner Variable Declarations
     private GameObject headSpawner;
     private Transform headSpawnerTransform;
 
     public GameObject flowerPower;
 
-    public int health = 3;
+    //Health Variable Declarations
+    public int health = 4;
+    public int maxHealth = 4;
 
+    //Jumping Variables
+    private bool isGrounded = true;
+    public int jumpForce = 15;
+    public float groundCheckRadius;
+    public Transform groundCheck;
+    public LayerMask ground;
+    private bool isJumping;
+
+
+    //Dashing Variables
     public float startDashTime;
     private float dashTime;
     public float extraSpeed;
@@ -50,6 +64,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+
+        maxHealthDisplay.text = maxHealth.ToString();
+
+        //Dashing and movement if statements
+
         if (input != 0)
         {
             anim.SetBool("isRunning", true);
@@ -68,7 +87,7 @@ public class Player : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isDashing == false)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isDashing == false)
         {
             speed += extraSpeed;
             isDashing = true;
@@ -87,6 +106,19 @@ public class Player : MonoBehaviour
         {
             dashTime -= Time.deltaTime;
         }
+
+        //makes player jump
+        if(Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
+        {
+            isGrounded = false;
+            anim.SetBool("isJumping", true);
+            rb.velocity = Vector2.up * jumpForce;
+        }
+
+        if(isGrounded == true)
+        {
+            anim.SetBool("isJumping", false);
+        }
     }
 
     // Update is called once per frame
@@ -97,11 +129,14 @@ public class Player : MonoBehaviour
 
         //moving player
         rb.velocity = new Vector2(input * speed, rb.velocity.y);
+
+        //checks for ground contact
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, ground);
     }
 
     public void TakeDamage(int damageAmount)
     {
-        if(damageAmount == 1)
+        if(damageAmount == 1 || damageAmount == 2)
         {
             source.PlayOneShot(hurt, 1);
             health -= damageAmount;
@@ -117,9 +152,8 @@ public class Player : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        else if(damageAmount == -1)
+        else if(damageAmount == -1 && health < maxHealth)
         {
-            source.PlayOneShot(heal, .7f);
             health -= damageAmount;
             if (health < 0)
             {
@@ -134,4 +168,5 @@ public class Player : MonoBehaviour
             }
         }
     }
+
 }

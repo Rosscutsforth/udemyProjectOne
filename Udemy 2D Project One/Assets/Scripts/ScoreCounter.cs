@@ -7,8 +7,10 @@ public class ScoreCounter : MonoBehaviour
 {
 
     public Text score;
+    public Text highScore;
     public GameObject player;
     public int scoreCapture = 0;
+    public int highScoreCapture;
 
     // Start is called before the first frame update
     void Start()
@@ -20,12 +22,16 @@ public class ScoreCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(scoreCapture > highScoreCapture)
+        {
+            highScoreCapture = scoreCapture;
+            highScore.text = highScoreCapture.ToString();
+        }
     }
 
     void OnTriggerEnter2D(Collider2D hitObject)
     {
-        if (hitObject.tag == "Enemy")
+        if (hitObject.tag == "Enemy" && player != null)
         {
             scoreCapture += 1; 
         }

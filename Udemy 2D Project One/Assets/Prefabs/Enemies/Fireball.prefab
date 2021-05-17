@@ -97,11 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a390e915d871e459dbfcb89063b95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 15
-  maxSpeed: 25
-  target: {fileID: 0}
-  score: {fileID: 0}
-  scoreCapture: 0
+  minSpeed: 22
+  maxSpeed: 33
   damage: 2
   explosion: {fileID: 3373554055974586639, guid: 08e1a2713eaabce45af2d2852fc82d19, type: 3}
 --- !u!70 &1580518970127261943
