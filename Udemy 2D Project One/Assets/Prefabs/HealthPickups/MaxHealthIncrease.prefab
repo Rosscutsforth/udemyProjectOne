@@ -117,8 +117,7 @@ MonoBehaviour:
   minSpeed: 3
   maxSpeed: 5
   damage: -1
-  explosion: {fileID: 469685638773379898, guid: 309c6b6d1b35210488b7e0463c8eb0a5, type: 3}
-  trail: {fileID: 1943695182717921653, guid: 77b34852e408c514599c4701e929d0a3, type: 3}
+  explosion: {fileID: 5862193335627454808, guid: a25a3f4f9ed2da1499b36537b0258f08, type: 3}
 --- !u!198 &-1968373900843934967
 ParticleSystem:
   m_ObjectHideFlags: 0

@@ -21,14 +21,12 @@ public class HealthIncrease : MonoBehaviour
     public int damage = -1;
 
     public GameObject explosion;
-    public GameObject trail;
 
     void Start()
     {
         //sideAngle = UnityEngine.Random.Range(sideAngle1, sideAngle2);
         speed = UnityEngine.Random.Range(minSpeed, maxSpeed);
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        // Instantiate(trail, transform.position, Quaternion.identity);
     }
 
     // Update is called once per frame
