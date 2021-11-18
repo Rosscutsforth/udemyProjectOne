@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - HealthIncrease
   - HealthRegen
+  - SeedlingStop
   layers:
   - Default
   - TransparentFX

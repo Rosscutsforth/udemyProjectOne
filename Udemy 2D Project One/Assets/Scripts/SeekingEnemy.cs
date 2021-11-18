@@ -17,7 +17,7 @@ public class SeekingEnemy : MonoBehaviour
 
     //float sideAngle;
     float speed;
-    float rotationSpeed = 4f;
+    float rotationSpeed = 3f;
 
     Player playerScript;
 

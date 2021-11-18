@@ -13,8 +13,8 @@ public class Spawner : MonoBehaviour
     public float startSpawnInterval;
 
     //Late game variables
-    private float lateGameInterval = 0.2f;
-    private float lateGameHourglass = 200f;
+    private float lateGameInterval = 0.15f;
+    private float lateGameHourglass = 300f;
     public AudioClip lateGameMusic;
     private AudioSource audioSource;
 
@@ -31,7 +31,7 @@ public class Spawner : MonoBehaviour
 
         if(player != null)
         {
-            audioSource.PlayDelayed(lateGameHourglass - 3);
+            audioSource.PlayDelayed(lateGameHourglass - 4);
         }
     }
 
